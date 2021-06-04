@@ -40,7 +40,7 @@ provider "intersight" {
 
 module "infra_config_policy" {
   source           = "terraform-cisco-modules/iks/intersight//modules/infra_config_policy"
-  name             = local.infra_config_policy 
+  name             = local.infra_config_policy
   device_name      = local.device_name
   vc_portgroup     = [local.portgroup]
   vc_datastore     = local.datastore
@@ -52,7 +52,7 @@ module "infra_config_policy" {
 
 module "ip_pool_policy" {
   source           = "terraform-cisco-modules/iks/intersight//modules/ip_pool"
-  name             = local.ip_pool_policy 
+  name             = local.ip_pool_policy
   starting_address = local.starting_address
   pool_size        = local.pool_size
   netmask          = local.netmask
@@ -64,7 +64,7 @@ module "ip_pool_policy" {
 
 module "network" {
   source      = "terraform-cisco-modules/iks/intersight//modules/k8s_network"
-  policy_name = "sbcluster" 
+  policy_name = "rtp_k8_cluster"
   #policy_name = local.clustername
   dns_servers = [local.primary_dns]
   ntp_servers = [local.primary_dns]
@@ -75,8 +75,8 @@ module "network" {
 
 module "k8s_version" {
   source           = "terraform-cisco-modules/iks/intersight//modules/version"
-  k8s_version      = local.k8s_version 
-  k8s_version_name = local.k8s_version_name 
+  k8s_version      = local.k8s_version
+  k8s_version_name = local.k8s_version_name
 
   org_name = local.organization
 }
@@ -116,31 +116,11 @@ locals {
   gateway = yamldecode(data.terraform_remote_state.global.outputs.gateway)
   infra_config_policy = yamldecode(data.terraform_remote_state.global.outputs.infra_config_policy)
   device_name = yamldecode(data.terraform_remote_state.global.outputs.device_name)
-  portgroup = yamldecode(data.terraform_remote_state.global.outputs.portgroup) 
-  password = yamldecode(data.terraform_remote_state.global.outputs.password) 
-#  portgroup = "VM Network" 
+  portgroup = yamldecode(data.terraform_remote_state.global.outputs.portgroup)
+  password = yamldecode(data.terraform_remote_state.global.outputs.password)
+#  portgroup = "VM Network"
   datastore = yamldecode(data.terraform_remote_state.global.outputs.datastore)
   vspherecluster = yamldecode(data.terraform_remote_state.global.outputs.vspherecluster)
   resource_pool = yamldecode(data.terraform_remote_state.global.outputs.resource_pool)
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
