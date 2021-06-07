@@ -1,1 +1,1 @@
-globalwsname = "dCloud_rtp_k8_globalvar"
+globalwsname = "rtp-iks-cluster-01-global"
