@@ -39,7 +39,7 @@ provider "intersight" {
 }
 
 module "infra_config_policy" {
-  source           = "terraform-cisco-modules/iks/intersight/modules/infra_config_policy"
+  source           = "terraform-cisco-modules/iks/intersight//modules/infra_config_policy"
   name             = local.infra_config_policy
   device_name      = local.device_name
   vc_portgroup     = [local.portgroup]
